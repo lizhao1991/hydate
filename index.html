@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="us">
+<head>
+	<meta charset="utf-8">
+	<title>日历</title>
+	<link href="jquery-ui.css" rel="stylesheet">
+	<style>
+	html,body{
+		font-family: Arial,"Hiragino Sans GB","Microsoft YaHei","微软雅黑",STHeiti,"WenQuanYi Micro Hei",SimSun,sans-serif;
+		height: 100%;
+	}
+	.datewrap{
+		height: 100%;
+		display: -webkit-flex;
+    	display: flex;
+    	justify-content: center;
+    	align-items:center;
+    	align-content:center;
+	}
+	.datewrap h4{
+		padding: 0;
+    	margin: 0;
+    	color: #333333;
+	}
+	.datewrap em{
+		font-size: 12px;
+    	color: #888888;
+	}
+	.datewrap-ul{
+		list-style: none;
+		padding: 0;
+
+	}
+	.datewrap-ul li{
+		font-size: 14px;
+    	font-weight: bold;
+    	color: #333333;
+	}
+	.datewrap-rate{
+		margin-right: 3%;
+	}
+	.fr{
+		float: right;
+	}
+	</style>
+</head>
+<body>
+
+<!-- Datepicker -->
+<div class="datewrap">
+	<div class="datewrap-rate">
+		<h4>Step 2:Select Early Payment Date</h4>
+		<em>Select different dates to see different discount rates</em>
+		<ul class="datewrap-ul">
+			<li><span>Early Payment Date：</span> <span class="fr" id="datecurrent">2/8/2013</span></li>
+			<li><span>Discount Percent：</span><span class="fr">1.207%</span></li>
+			<li><span>Discount Amount：</span><span class="fr">$842.65</span></li>
+		</ul>
+	</div>
+	<div id="datepicker"></div>
+</div>
+<script src="external/jquery/jquery.js"></script>
+<script src="jquery-ui.js"></script>
+<script>
+var datecurrentobj = $("#datecurrent");
+function setDateCurrent(){
+	var d = new Date()
+	var vYear = d.getFullYear()
+	var vMon = d.getMonth() + 1
+	var vDay = d.getDate()
+	var s=vMon+'/'+vDay+'/'+vYear;
+	datecurrentobj.text(s);	
+}
+setDateCurrent();
+$( "#datepicker" ).datepicker({
+	dateFormat: "m/d/yy",
+	onSelect:function(dateText,inst) {
+		datecurrentobj.text(dateText);
+	}
+});
+</script>
+</body>
+</html>
